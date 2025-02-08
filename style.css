@@ -1,0 +1,48 @@
+body {
+    margin: 0;
+    padding: 20px;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+table{
+    width: 50%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td{
+    border: 1px solid #e4dcdc;
+}
+
+th{
+    color: #b1afaf;
+}
+
+.add_elem input{
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.add_elem button{
+    padding: 11px;
+    border-radius: 5px;
+    background-color: rgb(55, 85, 255);
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.add_elem button:hover{
+    transform: scale(1.1);
+}
+
+.add_elem button:active{
+    transform: scale(1.02);
+}
+
+.add_elem input:focus{
+    border-color: rgb(0, 38, 255);
+    outline: none;
+}
