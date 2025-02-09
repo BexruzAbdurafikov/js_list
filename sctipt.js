@@ -16,18 +16,53 @@ function drawTable() {
         tr.append(index_td);
 
         const name = document.createElement('td');
+        const nameInput = document.createElement('input');
         name.textContent = student.name;
         tr.append(name);
 
         const year = document.createElement('td');
+        const yearInput = document.createElement('input');
         year.textContent = student.year;
         tr.append(year);
 
         const actions = document.createElement('td');
 
         const editButton = document.createElement('button');
+        const saveButton = document.createElement('button');
         editButton.textContent = '✏️';
-        editButton.onclick = () => editStudent(student.id);
+        saveButton.textContent = '✏️🗑️';
+
+        saveButton.onclick = () => {
+            student.name = nameInput.value;
+            student.year = yearInput.value;
+        
+            actions.removeChild(saveButton);
+            year.removeChild(yearInput);
+            name.removeChild(nameInput);
+            
+            name.textContent = student.name;
+            year.textContent = student.year;
+        }
+
+        editButton.onclick = () => {
+            const student2 = students.find(std => std.id === student.id);
+
+            name.innerHTML = "";
+            name.append(nameInput);
+            nameInput.value = student.name
+
+            year.innerHTML = "";
+            year.append(yearInput);
+            yearInput.value = student.year
+
+            actions.appendChild(saveButton);
+
+            if (newName !== null && newYear !== null) {
+                student2.name = newName;
+                student2.year = parseInt(newYear);
+                drawTable();
+            }
+        };
         actions.appendChild(editButton);
 
         const deleteButton = document.createElement('button');
@@ -66,17 +101,6 @@ function deleteStudent(id) {
     drawTable();
 }
 
-function editStudent(id) {
-    const student = students.find(student => student.id === id);
-    const newName = prompt("Введите новое имя:", student.name);
-    const newYear = prompt("Введите новый год рождения:", student.year);
-
-    if (newName !== null && newYear !== null) {
-        student.name = newName;
-        student.year = parseInt(newYear);
-        drawTable();
-    }
-}
 
 document.querySelector('.add_elem button').onclick = () => {
     addStudent();
